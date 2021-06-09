@@ -1,0 +1,18 @@
+# This is an example maubot plugin definition file.
+# All plugins must include a file like this named "maubot.yaml" in their root directory.
+
+# Target maubot version
+maubot: 0.1.0
+
+# The unique ID for the plugin. Java package naming style. (i.e. use your own domain, not xyz.maubot)
+id: org.pavluk.nekogirl
+version: 1.0.0
+license: 0BSD
+modules:
+- nekogirl
+main_class: Nekogirl
+database: false
+extra_files:
+- base-config.yaml
+dependencies:
+- aiohttp

@@ -1,0 +1,74 @@
+# Use chance=0 to disable a source
+# Otherwise, the chance divided by the sum of all chances will be the actual
+# probability of choosing a specific API.
+# e.g. with chances A=2, B=1, C=3, probabilities are A=33.3%, B=16.7%, C=50%
+
+sfw:
+  ## SFW Sources list
+  # nekos.life
+  nekos_life:
+    chance: 1.0
+    # Chance to pick this source when looking for gifs (most sources don't have gif support)
+    gif_chance: 1.0
+  # neko-love.xyz
+  neko_love_xyz:
+    chance: 1.0
+  # nekos.moe
+  nekos_moe:
+    chance: 1.0
+  # images by URL
+  images:
+    chance: 0
+    gif_chance: 0
+    options:
+    # You can use an mxc url or an http(s) url (the latter will be sent as text).
+    - url: mxc://matrix.org/someNekogirlUrl
+      # MXC urls must have an extension specified
+      extension: jpg
+      # Note that these chances are used to select the specific image when compared
+      # to other images, not when compared to other sources.
+      chance: 5
+    - url: https://i.imgur.com/nekogirl.png
+      chance: 10
+      # Extension is optional for http(s) images and will only be used to determine
+      # whether the image is animated
+      extension: png
+nsfw:
+  # Allow sending nsfw images when the user requests it
+  allow: true
+  # Require nsfw substring in room name to send nsfw images (allowed anywhere by default)
+  require_nsfw_in_room_name: true
+
+  ## NSFW Sources list
+  # nekos.life
+  nekos_life:
+    chance: 1.0
+    gif_chance: 1.0
+  # neko-love.xyz
+  neko_love_xyz:
+    chance: 1.0
+  # nekos.moe
+  nekos_moe:
+    chance: 1.0
+  # images by URL
+  images:
+    chance: 0
+    gif_chance: 0
+    options:
+    - url: https://i.imgur.com/nekogirl.png
+      chance: 1
+# Frankly, you probably don't need this one
+custom_tags:
+  # This has the same syntax as image source options
+  # some_tag:
+  #   aliases: [sometag]
+  #   nsfw: false
+  #   options:
+  #   - url: mxc://matrix.org/someNekogirlUrl
+  #     extension: png
+  #     chance: 5
+  # other_tag:
+  #   # nsfw is false by default
+  #   options:
+  #   - url: https://i.imgur.com/nekogirl.png
+  #     chance: 10
