@@ -338,15 +338,21 @@ Available tags: """ + "/".join(available_tags)
             if not await self.can_manage(event):
                 await event.reply("You don't have the permission to change NSFW settings in this room!")
                 return
-            await self.client.send_state_event(event.room_id, NSFW_STATE, {'allow_nsfw': True})
-            await event.reply('NSFW enabled!')
+            try:
+                await self.client.send_state_event(event.room_id, NSFW_STATE, {'allow_nsfw': True})
+                await event.reply('NSFW enabled!')
+            except:
+                await event.reply("Failed to change room settings! Perhaps the bot user's permissions are insufficient?")
             return
         if "disable_nsfw" in tags:
             if not await self.can_manage(event):
                 await event.reply("You don't have the permission to change NSFW settings in this room!")
                 return
-            await self.client.send_state_event(event.room_id, NSFW_STATE, {'allow_nsfw': False})
-            await event.reply('NSFW disabled!')
+            try:
+                await self.client.send_state_event(event.room_id, NSFW_STATE, {'allow_nsfw': False})
+                await event.reply('NSFW disabled!')
+            except:
+                await event.reply("Failed to change room settings! Perhaps the bot user's permissions are insufficient?")
             return
         nsfw = (("lewd" in tags) or ("nsfw" in tags) or ("hentai" in tags)) and self.config["nsfw"]["allow"]
         custom = None
