@@ -1,0 +1,8 @@
+id: org.pavluk.nitter
+version: 1.0.0
+license: 0BSD
+modules:
+- nitter
+main_class: Nitter
+extra_files:
+- base-config.yaml

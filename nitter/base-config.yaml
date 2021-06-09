@@ -1,0 +1,15 @@
+# twitter replacements (will be used by replacing twitter.com with the instance url)
+twitter:
+- nitter.snopyta.org
+- nitter.kavin.rocks
+- nitter.fdn.fr
+# youtube replacements (will be used by replacing youtube.com with the instance url, and youtu.be with instance url + /watch?v=)
+youtube:
+- notyoutube.org
+- invidious.namazso.eu
+- invidious.snopyta.org
+# bibliogram instances (they need /u/ before usernames, so it's not a direct replacement)
+bibliogram:
+- bibliogram.art
+- bibliogram.snopyta.org
+- bibliogram.pussthecat.org
