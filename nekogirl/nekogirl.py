@@ -223,6 +223,7 @@ class Nekogirl(Plugin):
     sfw_gif_sources: SourceSet
     nsfw_gif_sources: SourceSet
     custom_tags: Dict[str, CustomTag]
+    custom_tags_no_alias: Dict[str, CustomTag]
     
     async def start(self) -> None:
         self.sfw_sources = SourceSet([], 0.0)
@@ -230,12 +231,14 @@ class Nekogirl(Plugin):
         self.sfw_gif_sources = SourceSet([], 0.0)
         self.nsfw_gif_sources = SourceSet([], 0.0)
         self.custom_tags = {}
+        self.custom_tags_no_alias = {}
         await super().start()
         self.on_external_config_update()
     
     def on_external_config_update(self):
         self.config.load_and_update()
         self.custom_tags = {}
+        self.custom_tags_no_alias = {}
         self.sfw_sources = SfwSourceSet(self.config)
         self.nsfw_sources = NsfwSourceSet(self.config)
         self.sfw_gif_sources = SfwGifSourceSet(self.config)
@@ -247,6 +250,7 @@ class Nekogirl(Plugin):
                     CustomImageSource(v["options"], gif=None),
                 )
                 self.custom_tags[k] = tag
+                self.custom_tags_no_alias[k] = tag
                 for alias in v.get("aliases", []):
                     self.custom_tags[alias] = tag
 
@@ -314,14 +318,19 @@ class Nekogirl(Plugin):
             available_tags = ["gif"]
             if self.config["nsfw"]["allow"]:
                 available_tags.append("lewd")
-                available_tags.extend(self.custom_tags.keys())
+                available_tags.extend(self.custom_tags_no_alias.keys())
             else:
-                available_tags.extend(k for k, v in self.custom_tags.items() if not v.nsfw)
+                available_tags.extend(k for k, v in self.custom_tags_no_alias.items() if not v.nsfw)
             help_msg = """Available commands:
+
 `nekogirl help`
+
 `nekogirl enable_nsfw`
+
 `nekogirl disable_nsfw`
+
 `nekogirl [tags]`
+
 Available tags: """ + "/".join(available_tags)
             await event.reply(help_msg)
             return
