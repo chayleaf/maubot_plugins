@@ -44,4 +44,4 @@ class Nitter(Plugin):
                 else:
                     ret.append('https://' + random.choice(self.config["bibliogram"]) + '/u' + match[2])
         if len(ret) > 0:
-            await event.respond('\n'.join(ret))
+            await event.reply('\n'.join(ret))
