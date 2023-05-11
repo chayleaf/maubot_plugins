@@ -1,0 +1,12 @@
+id: org.pavluk.valetudo
+version: 0.1.0
+license: 0BSD
+modules:
+- valetudo
+main_class: Valetudo
+extra_files:
+- base-config.yaml
+dependencies:
+- aiohttp
+#soft_dependencies:
+#- bar>=0.1

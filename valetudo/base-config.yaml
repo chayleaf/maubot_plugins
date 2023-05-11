@@ -1,0 +1,5 @@
+api_url: "http://valetudo.local"
+room_ids:
+  room1: 1
+  room2: 2
+  other_rooms: [3, 4]
